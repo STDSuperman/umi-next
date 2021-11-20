@@ -22,6 +22,11 @@ const INITIAL_COMPILER_OPTIONS: CompilerOptions = {
   allowJs: true,
 };
 
+/**
+ * generate .d.ts files
+ * @param fileNames
+ * @param config
+ */
 export const generateDtsFile = (
   fileNames: string[],
   config: ITransformerConfig,
