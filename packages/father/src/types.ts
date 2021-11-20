@@ -82,6 +82,11 @@ export interface IFatherTransformerConfig {
    * ignore specific directories & files via ignore syntax
    */
   ignores?: string[];
+
+  /**
+   * current working directory
+   */
+  cwd?: string;
 }
 
 export interface IFatherBundlerConfig {

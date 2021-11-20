@@ -1,8 +1,9 @@
+import { glob, winPath } from '@umijs/utils';
 import fs from 'fs';
 import path from 'path';
-import { glob, winPath } from '@umijs/utils';
 import type { IFatherBaseConfig, IFatherTransformerConfig } from '../../types';
 import type { ITransformer } from '../protocol';
+import { generateDtsFile } from './dts';
 
 /**
  * declare bundless config
@@ -59,6 +60,9 @@ export default async (
       fs.writeFileSync(itemDistPath, result);
     }
   });
+
+  // generate .d.ts files
+  generateDtsFile(matches, config);
 
   // TODO: watch mode
 };

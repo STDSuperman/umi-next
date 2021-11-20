@@ -10,6 +10,7 @@ export default (api: IApi) => {
         // disable umd in dev by default
         umd: args.umd ?? (!args.esm && api.service.env === 'production'),
         esm: args.esm ?? !args.umd,
+        ...args,
       };
 
       // support to build specific dist type via cli args

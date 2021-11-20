@@ -1,8 +1,8 @@
-import path from 'path';
 import { winPath } from '@umijs/utils';
+import path from 'path';
+import type { IFatherConfig } from '../types';
 import type { IBundlerConfig } from './executor/bundle';
 import type { ITransformerConfig } from './executor/bundless';
-import type { IFatherConfig } from '../types';
 
 const DEFAULT_BUNDLESS_IGNORES = [
   '**/*.md',
@@ -88,6 +88,7 @@ export function normalizeUserConfig(
       ignores: DEFAULT_BUNDLESS_IGNORES.concat(
         Object.keys(overrides).map((i) => `${i}/*`),
       ),
+      cwd: opts.cwd,
     });
 
     // generate config for overrides
