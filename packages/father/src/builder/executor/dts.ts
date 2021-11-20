@@ -94,14 +94,18 @@ export const mergeTsCompilerOptions = (
 export const getTsConfig = (filePath: string): TsConfig => {
   const config = fsExtra.readJSONSync(filePath) ?? {};
   if (config.extends) {
+    // resolve extends config file path
     const extendsTsConfigFilePath = path.resolve(
       path.dirname(filePath),
       config.extends,
     );
+    // check file exists
     if (!fsExtra.existsSync(extendsTsConfigFilePath)) {
       throw new Error(`${extendsTsConfigFilePath} is not found`);
     }
+    // remove current extends field
     delete config.extends;
+    // recursive merge extends config
     return deepMerge(config, getTsConfig(extendsTsConfigFilePath));
   }
   return config;
