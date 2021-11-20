@@ -39,7 +39,10 @@ export const generateDtsFile = (
   );
 
   // get .d.ts files out dir
-  const declarationDir = config?.output ?? compilerOptions.outDir ?? 'dist';
+  if (config?.output) {
+    compilerOptions.outDir = config?.output;
+  }
+  const declarationDir = compilerOptions.outDir ?? 'dist';
 
   // clean output dir
   fsExtra.removeSync(declarationDir);
