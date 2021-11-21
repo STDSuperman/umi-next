@@ -70,6 +70,7 @@ export function normalizeUserConfig(
     const bundlessConfig: Omit<ITransformerConfig, 'input'> = {
       type: 'bundless',
       output: 'es',
+      cwd: opts.cwd,
 
       // default to use auto transformer
       transformer: autoTransformer,
@@ -88,7 +89,6 @@ export function normalizeUserConfig(
       ignores: DEFAULT_BUNDLESS_IGNORES.concat(
         Object.keys(overrides).map((i) => `${i}/*`),
       ),
-      cwd: opts.cwd,
     });
 
     // generate config for overrides
